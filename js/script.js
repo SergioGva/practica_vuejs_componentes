@@ -8,6 +8,7 @@ var server_data = {
 
         items : [
 	          {
+                id: 1,
                 href : "https://en.wikipedia.org/wiki/The_Lord_of_the_Rings_(film_series)",
                 data : [
 		                {name : "name", value : "The Lord of the Rings", prompt : "Name"},
@@ -17,6 +18,7 @@ var server_data = {
                 ]
 	          },
 	          {
+                id: 2,
                 href : "https://en.wikipedia.org/wiki/The_Hunger_Games_(film_series)",
                 data : [
 		                {name : "name", value : "The Hunger Games", prompt : "Name"},
@@ -26,6 +28,7 @@ var server_data = {
                 ]
 	          },
 	          {
+                id: 3,
                 href : "https://en.wikipedia.org/wiki/Game_of_Thrones",
                 data : [
 		                {name : "name", value : "Game of Thrones", prompt : "Name"},
@@ -41,13 +44,27 @@ var server_data = {
 
 // TODO: Componente edit-form
 Vue.component('edit-form', {
-
+    template: '#edit-form',
+    props: ['col'],
+    methods: {
+        toggleEditFormVisibility(id) {
+            server_data.collection.showEditForm = !server_data.collection.showEditForm;
+            server_data.collection.idEditar = id;
+        }
+    }
 })
 
 // TODO: Componente item-data
 Vue.component('item-data', {
-
-})
+    template: '#item-data',
+    props: ['col'],
+    methods: {
+        toggleEditFormVisibility(id) {
+            server_data.collection.showEditForm = !server_data.collection.showEditForm;
+            server_data.collection.idEditar = id;
+        }
+    }
+});
 
 // Aplicación VueJS
 // La aplicación recibe los datos en la variable de datos "col"
