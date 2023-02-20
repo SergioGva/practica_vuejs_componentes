@@ -5,6 +5,8 @@ var server_data = {
         title : "Movie List",
         type : "movie",
         version : "1.0",
+        showEditForm:true,
+        idEdit: 0,
 
         items : [
 	          {
@@ -47,9 +49,22 @@ Vue.component('edit-form', {
     template: '#edit-form',
     props: ['col'],
     methods: {
-        toggleEditFormVisibility(id) {
+        closeForm(id) {
+            server_data.collection.items.forEach(movie=>{
+                if(movie.id == id){
+                    movie.data[0].value=this.$refs.name[0].value;
+                    movie.data[1].value=this.$refs.description[0].value;
+                    movie.data[2].value=this.$refs.director[0].value;
+                    movie.data[3].value=this.$refs.datePublished[0].value;
+                    console.log(this.$refs.name[0].value);
+                    console.log(movie.data[0].value);
+                }
+            })
+            console.log(id);
+            //console.log(this.$refs.name[0].value);
+            //console.log(this.$refs.ap[0].value);
             server_data.collection.showEditForm = !server_data.collection.showEditForm;
-            server_data.collection.idEditar = id;
+        
         }
     }
 })
@@ -60,6 +75,7 @@ Vue.component('item-data', {
     props: ['col'],
     methods: {
         toggleEditFormVisibility(id) {
+            console.log(id);
             server_data.collection.showEditForm = !server_data.collection.showEditForm;
             server_data.collection.idEditar = id;
         }
